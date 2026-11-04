@@ -14,7 +14,10 @@
 
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
       pkgs = import nixpkgs { system = "aarch64-linux"; };
-      modules = [ ./modules/nix-on-droid.nix ];
+      modules = [ 
+        ./modules/nix-on-droid.nix
+        ./modules/pkgs.nix
+      ];
     };
 
   };

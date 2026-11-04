@@ -1,49 +1,37 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Simply install just the packages
-  environment.packages = with pkgs; [
-    starship
-    fastfetch
-    chafa
-    vim
-    git
-    gh
-    #procps
-    #killall
-    #diffutils
-    #findutils
-    #utillinux
-    #tzdata
-    #hostname
-    #man
-    #gnugrep
-    #gnupg
-    #gnused
-    #gnutar
-    #bzip2
-    #gzip
-    #xz
-    #zip
-    #unzip
-  ];
-
-  #----- starShip config ----------#
+  #----- NixOnDroid Options
+    android-integration = {
+      am.enable = true;
+      termux-open.enable = true;
+      termux-reload-settings.enable = true;
+      termux-setup-storage.enable = true;
+      termux-wake-lock.enable = true; 
+    };
+  
+  #----- Terminal&StarShip config
+  
     terminal.font = "${pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }}/share/fonts/truetype/NerdFonts/JetBrainsMonoNerdFont-Regular.ttf";
+    user.shell = "${pkgs.fish}/bin/fish";
     #starship preset "presetName" -o ~/.config/starship.toml
-  #----- programs --------#
-
-  #--- Backup etc files instead of failing to activate generation if a file already exists in /etc
+    
+  #----- etcFilesBackup
+  
   environment.etcBackupExtension = ".bak";
 
-  # Read the changelog before changing this value
+  #------ Read the changelog before changing this value
+  
   system.stateVersion = "24.05";
+  environment.motd = null;
 
-  # Set up nix for flakes
+  #------ FlakeSetup
+  
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
 
-#------ time zone ------------------#
+  #------ TimeZone
+  
   time.timeZone = "Africa/Lusaka";
 }
