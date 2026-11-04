@@ -13,6 +13,7 @@
       which
       tree
       hello
+      lazygit
     ];
 
 }
