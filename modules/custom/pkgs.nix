@@ -14,7 +14,6 @@
       tree
       hello
       lazygit
-      jujutsu
     ];
 
 }
